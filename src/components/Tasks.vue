@@ -157,8 +157,8 @@ export default {
 .tasks {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   gap: 13rem;
-  margin-bottom: 4rem;
 }
 
 .task-card {
@@ -168,7 +168,7 @@ export default {
   width: 17%;
   min-height: 200px;
   border-radius: 2rem;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 
@@ -271,5 +271,25 @@ export default {
 
 .task-icons {
   color: #828390;
+}
+
+@media only screen and (max-width: 1500px) {
+  .btn {
+    width: 60px;
+    height: 30px;
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .tasks {
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  .task-card {
+    width: 80%;
+  }
 }
 </style>
