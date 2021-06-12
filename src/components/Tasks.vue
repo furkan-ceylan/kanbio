@@ -82,10 +82,11 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: var(--darkest);
-  width: 20%;
+  width: 17%;
   min-height: 200px;
   border-radius: 2rem;
   padding-bottom: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 
 .card-header {
@@ -129,6 +130,14 @@ export default {
   min-height: 100px;
   border-radius: 1.5rem;
   margin-top: 1rem;
+  transform: translate(0, 3px);
+  transition: 0.4s;
+}
+
+.task:hover {
+  transition: 0.4s;
+  box-shadow: 0px 15px 15px -5px rgba(0, 0, 0, 0.2);
+  transform: translate(0, -3px);
 }
 
 .task p {
@@ -166,6 +175,14 @@ export default {
   color: var(--white);
   font-weight: bold;
   font-size: 1rem;
+  transform: translate(0, 1px);
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transition: 0.2s;
+  box-shadow: 0px 15px 15px -5px rgba(0, 0, 0, 0.2);
+  transform: translate(0, -1px);
 }
 
 .task-icons {
