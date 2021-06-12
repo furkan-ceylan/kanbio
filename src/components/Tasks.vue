@@ -1,6 +1,11 @@
 .<template>
   <div class="tasks">
-    <div class="task-card">
+    <div
+      class="task-card"
+      @drop="onDrop($event, 1)"
+      @dragenter.prevent
+      @dragover.prevent
+    >
       <div class="card-header">
         <div class="card-header-left">
           <h2>To Do</h2>
@@ -11,8 +16,14 @@
         </div>
       </div>
       <div class="card-content">
-        <div class="task">
-          <p>New buttons for the design system</p>
+        <div
+          class="task"
+          v-for="task in getList(1)"
+          :key="task.id"
+          draggable="true"
+          @dragstart="startDrag($event, task)"
+        >
+          <p>{{ task.text }}</p>
           <div class="task-bottom">
             <div class="task-bottom-left">
               <span class="material-icons task-icons">question_answer</span>
@@ -25,11 +36,14 @@
             </div>
           </div>
         </div>
-        <div class="task"></div>
-        <div class="task"></div>
       </div>
     </div>
-    <div class="task-card">
+    <div
+      class="task-card"
+      @drop="onDrop($event, 2)"
+      @dragenter.prevent
+      @dragover.prevent
+    >
       <div class="card-header">
         <div class="card-header-left">
           <h2>Doing</h2>
@@ -40,12 +54,34 @@
         </div>
       </div>
       <div class="card-content">
-        <div class="task"></div>
-        <div class="task"></div>
-        <div class="task"></div>
+        <div
+          class="task"
+          v-for="task in getList(2)"
+          :key="task.id"
+          draggable="true"
+          @dragstart="startDrag($event, task)"
+        >
+          <p>{{ task.text }}</p>
+          <div class="task-bottom">
+            <div class="task-bottom-left">
+              <span class="material-icons task-icons">question_answer</span>
+              <h5>12</h5>
+              <span class="material-icons task-icons">attach_file</span>
+              <h5>5</h5>
+            </div>
+            <div class="task-bottom-right">
+              <button class="btn">Low</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="task-card">
+    <div
+      class="task-card"
+      @drop="onDrop($event, 3)"
+      @dragenter.prevent
+      @dragover.prevent
+    >
       <div class="card-header">
         <div class="card-header-left">
           <h2>Done</h2>
@@ -56,9 +92,26 @@
         </div>
       </div>
       <div class="card-content">
-        <div class="task"></div>
-        <div class="task"></div>
-        <div class="task"></div>
+        <div
+          class="task"
+          v-for="task in getList(3)"
+          :key="task.id"
+          draggable="true"
+          @dragstart="startDrag($event, task)"
+        >
+          <p>{{ task.text }}</p>
+          <div class="task-bottom">
+            <div class="task-bottom-left">
+              <span class="material-icons task-icons">question_answer</span>
+              <h5>12</h5>
+              <span class="material-icons task-icons">attach_file</span>
+              <h5>5</h5>
+            </div>
+            <div class="task-bottom-right">
+              <button class="btn">Low</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -67,6 +120,36 @@
 <script>
 export default {
   name: 'Tasks',
+  data: function () {
+    return {
+      tasks: [
+        { id: 0, text: '1', list: 1 },
+        { id: 1, text: '2', list: 2 },
+        { id: 2, text: '3', list: 2 },
+        { id: 3, text: '4', list: 3 },
+        { id: 4, text: '5', list: 1 },
+        { id: 5, text: '6', list: 3 },
+      ],
+    }
+  },
+  methods: {
+    getList(list) {
+      return this.tasks.filter((task) => task.list == list)
+    },
+
+    startDrag(event, task) {
+      console.log(task)
+      event.dataTransfer.dropEffect = 'move'
+      event.dataTransfer.effectAllowed = 'move'
+      event.dataTransfer.setData('taskID', task.id)
+    },
+
+    onDrop(event, list) {
+      const taskID = event.dataTransfer.getData('taskID')
+      const task = this.tasks.find((task) => task.id == taskID)
+      task.list = list
+    },
+  },
 }
 </script>
 
@@ -132,6 +215,7 @@ export default {
   margin-top: 1rem;
   transform: translate(0, 3px);
   transition: 0.4s;
+  cursor: pointer;
 }
 
 .task:hover {
@@ -171,7 +255,7 @@ export default {
   border-radius: 2rem;
   background-color: var(--green-btn);
   margin-right: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   color: var(--white);
   font-weight: bold;
   font-size: 1rem;
