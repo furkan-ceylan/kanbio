@@ -3,10 +3,10 @@
     <div class="header-left">
       <div class="navs">
         <div class="act-btn">
-          <span class="material-icons">home</span>
+          <button class="material-icons">home</button>
         </div>
         <div class="act-btn">
-          <span class="material-icons">view_compact</span>
+          <button class="material-icons">view_compact</button>
         </div>
       </div>
       <div class="search">
@@ -18,17 +18,17 @@
     </div>
     <div class="header-right">
       <div class="act-btn add-task">
-        <span class="material-icons">add</span>
+        <button class="material-icons">add</button>
       </div>
       <div class="functions">
         <div class="act-btn">
-          <span class="material-icons">notifications</span>
+          <button class="material-icons">notifications</button>
         </div>
         <div class="act-btn">
-          <span class="material-icons">help_outline</span>
+          <button class="material-icons">help_outline</button>
         </div>
         <div class="act-btn">
-          <span class="material-icons">settings</span>
+          <button class="material-icons">settings</button>
         </div>
       </div>
       <div class="avatar">
@@ -121,9 +121,5 @@ export default {
 
 .avatar img {
   border-radius: 100%;
-}
-
-.material-icons {
-  color: var(--white);
 }
 </style>

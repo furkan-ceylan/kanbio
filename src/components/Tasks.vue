@@ -1,0 +1,174 @@
+.<template>
+  <div class="tasks">
+    <div class="task-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <h2>To Do</h2>
+          <div class="task-count">3</div>
+        </div>
+        <div class="card-header-right">
+          <button class="material-icons">add</button>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="task">
+          <p>New buttons for the design system</p>
+          <div class="task-bottom">
+            <div class="task-bottom-left">
+              <span class="material-icons task-icons">question_answer</span>
+              <h5>12</h5>
+              <span class="material-icons task-icons">attach_file</span>
+              <h5>5</h5>
+            </div>
+            <div class="task-bottom-right">
+              <button class="btn">Low</button>
+            </div>
+          </div>
+        </div>
+        <div class="task"></div>
+        <div class="task"></div>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <h2>Doing</h2>
+          <div class="task-count">3</div>
+        </div>
+        <div class="card-header-right">
+          <button class="material-icons">add</button>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="task"></div>
+        <div class="task"></div>
+        <div class="task"></div>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <h2>Done</h2>
+          <div class="task-count">3</div>
+        </div>
+        <div class="card-header-right">
+          <button class="material-icons">add</button>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="task"></div>
+        <div class="task"></div>
+        <div class="task"></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Tasks',
+}
+</script>
+
+<style scoped>
+.tasks {
+  display: flex;
+  justify-content: center;
+  gap: 13rem;
+  margin-bottom: 4rem;
+}
+
+.task-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--darkest);
+  width: 20%;
+  min-height: 200px;
+  border-radius: 2rem;
+  padding-bottom: 1rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+.card-header-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light);
+  border-radius: 40%;
+  color: var(--white);
+  width: 40px;
+  height: 30px;
+  margin-left: 1.5rem;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--light);
+  width: 90%;
+  min-height: 100px;
+  border-radius: 1.5rem;
+  margin-top: 1rem;
+}
+
+.task p {
+  color: var(--white);
+  font-size: 1.3rem;
+  padding: 1em;
+}
+
+.task-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-bottom-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-bottom-left h5 {
+  margin-left: 0.25rem;
+}
+
+.task-icons {
+  margin-left: 1rem;
+}
+
+.btn {
+  width: 80px;
+  height: 40px;
+  border-radius: 2rem;
+  background-color: var(--green-btn);
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.task-icons {
+  color: #828390;
+}
+</style>

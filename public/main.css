@@ -4,7 +4,7 @@
   --light: #404457;
   --white: #fefefe;
   --green-btn: #01c07b;
-  --red-btn: #01c07b;
+  --red-btn: #ed4d4d;
   --orange-btn: #ff9100;
   --blue-btn: #0075ff;
 }
@@ -56,5 +56,9 @@ h6,
 b,
 strong,
 label {
+  color: var(--white);
+}
+
+.material-icons {
   color: var(--white);
 }
