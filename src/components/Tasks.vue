@@ -12,7 +12,7 @@
           <div class="task-count">3</div>
         </div>
         <div class="card-header-right">
-          <button class="material-icons">add</button>
+          <a href="#openModal" class="material-icons">add</a>
         </div>
       </div>
       <div class="card-content">
@@ -27,12 +27,19 @@
           <div class="task-bottom">
             <div class="task-bottom-left">
               <span class="material-icons task-icons">question_answer</span>
-              <h5>12</h5>
-              <span class="material-icons task-icons">attach_file</span>
-              <h5>5</h5>
+              <h5>{{ task.comments }}</h5>
             </div>
             <div class="task-bottom-right">
-              <button class="btn">Low</button>
+              <button
+                class="btn"
+                :class="{
+                  btnLow: task.priority === 'Low',
+                  btnMedium: task.priority === 'Medium',
+                  btnHigh: task.priority === 'High',
+                }"
+              >
+                {{ task.priority }}
+              </button>
             </div>
           </div>
         </div>
@@ -50,7 +57,7 @@
           <div class="task-count">3</div>
         </div>
         <div class="card-header-right">
-          <button class="material-icons">add</button>
+          <a href="#openModal" class="material-icons">add</a>
         </div>
       </div>
       <div class="card-content">
@@ -65,12 +72,19 @@
           <div class="task-bottom">
             <div class="task-bottom-left">
               <span class="material-icons task-icons">question_answer</span>
-              <h5>12</h5>
-              <span class="material-icons task-icons">attach_file</span>
-              <h5>5</h5>
+              <h5>{{ task.comments }}</h5>
             </div>
             <div class="task-bottom-right">
-              <button class="btn">Low</button>
+              <button
+                class="btn"
+                :class="{
+                  btnLow: task.priority === 'Low',
+                  btnMedium: task.priority === 'Medium',
+                  btnHigh: task.priority === 'High',
+                }"
+              >
+                {{ task.priority }}
+              </button>
             </div>
           </div>
         </div>
@@ -88,7 +102,7 @@
           <div class="task-count">3</div>
         </div>
         <div class="card-header-right">
-          <button class="material-icons">add</button>
+          <a href="#openModal" class="material-icons">add</a>
         </div>
       </div>
       <div class="card-content">
@@ -103,33 +117,81 @@
           <div class="task-bottom">
             <div class="task-bottom-left">
               <span class="material-icons task-icons">question_answer</span>
-              <h5>12</h5>
-              <span class="material-icons task-icons">attach_file</span>
-              <h5>5</h5>
+              <h5>{{ task.comments }}</h5>
             </div>
             <div class="task-bottom-right">
-              <button class="btn">Low</button>
+              <button
+                class="btn"
+                :class="{
+                  btnLow: task.priority === 'Low',
+                  btnMedium: task.priority === 'Medium',
+                  btnHigh: task.priority === 'High',
+                }"
+              >
+                {{ task.priority }}
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <AddTask @create-task="addTask" />
     </div>
   </div>
 </template>
 
 <script>
+import AddTask from '../components/AddTask.vue'
+
 export default {
   name: 'Tasks',
+  components: { AddTask },
   data: function () {
     return {
       tasks: [
-        { id: 0, text: '1', list: 1 },
-        { id: 1, text: '2', list: 2 },
-        { id: 2, text: '3', list: 2 },
-        { id: 3, text: '4', list: 3 },
-        { id: 4, text: '5', list: 1 },
-        { id: 5, text: '6', list: 3 },
+        {
+          id: 0,
+          text: 'task count düzenle',
+          list: 1,
+          priority: 'High',
+          comments: 5,
+        },
+        {
+          id: 1,
+          text: 'task ekleme',
+          list: 2,
+          priority: 'Low',
+          comments: 3,
+        },
+        {
+          id: 2,
+          text: 'task card ekleme',
+          list: 2,
+          priority: 'Medium',
+          comments: 15,
+        },
+        {
+          id: 3,
+          text: 'task board ekleme',
+          list: 3,
+          priority: 'Medium',
+          comments: 2,
+        },
+        {
+          id: 4,
+          text: 'header fonksiyon butonlarını düzenle',
+          list: 1,
+          priority: 'Medium',
+          comments: 4,
+        },
+        {
+          id: 5,
+          text: 'task detayına gitme',
+          list: 3,
+          priority: 'Low',
+          comments: 7,
+        },
       ],
+      openModal: false,
     }
   },
   methods: {
@@ -148,6 +210,10 @@ export default {
       const taskID = event.dataTransfer.getData('taskID')
       const task = this.tasks.find((task) => task.id == taskID)
       task.list = list
+    },
+    addTask(addTask) {
+      this.tasks.push(addTask)
+      console.log(this.tasks)
     },
   },
 }
@@ -215,7 +281,7 @@ export default {
   margin-top: 1rem;
   transform: translate(0, 3px);
   transition: 0.4s;
-  cursor: pointer;
+  cursor: move;
 }
 
 .task:hover {
@@ -249,26 +315,6 @@ export default {
   margin-left: 1rem;
 }
 
-.btn {
-  width: 80px;
-  height: 40px;
-  border-radius: 2rem;
-  background-color: var(--green-btn);
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  color: var(--white);
-  font-weight: bold;
-  font-size: 1rem;
-  transform: translate(0, 1px);
-  transition: 0.2s;
-}
-
-.btn:hover {
-  transition: 0.2s;
-  box-shadow: 0px 15px 15px -5px rgba(0, 0, 0, 0.2);
-  transform: translate(0, -1px);
-}
-
 .task-icons {
   color: #828390;
 }
@@ -277,7 +323,7 @@ export default {
   .btn {
     width: 60px;
     height: 30px;
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 }
 
