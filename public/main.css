@@ -62,3 +62,35 @@ label {
 .material-icons {
   color: var(--white);
 }
+
+/* Buttons */
+
+.btn {
+  width: 80px;
+  height: 40px;
+  border-radius: 2rem;
+  background-color: var(--green-btn);
+  margin-bottom: 1rem;
+  color: var(--white);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.btnLow {
+  background-color: var(--green-btn);
+  margin-right: 1rem;
+}
+
+.btnMedium {
+  background-color: var(--orange-btn);
+  margin-right: 1rem;
+}
+
+.btnHigh {
+  background-color: var(--red-btn);
+  margin-right: 1rem;
+}
+
+.btnBlue {
+  background-color: var(--blue-btn);
+}
