@@ -57,7 +57,6 @@ export default {
   },
   methods: {
     switchView: function (event, selectedIndex) {
-      console.log(event, selectedIndex)
       this.selectedIndex = selectedIndex
     },
     addTask() {
