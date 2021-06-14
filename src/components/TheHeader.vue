@@ -78,6 +78,10 @@ export default {
   padding: 1rem;
 }
 
+.search {
+  opacity: 1;
+}
+
 .search-bar {
   width: 220px;
   height: 40px;
@@ -112,6 +116,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 1;
 }
 
 .avatar {
@@ -121,5 +126,14 @@ export default {
 
 .avatar img {
   border-radius: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .search {
+    display: none;
+  }
+  .functions {
+    display: none;
+  }
 }
 </style>
