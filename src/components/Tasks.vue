@@ -9,7 +9,7 @@
       <div class="card-header">
         <div class="card-header-left">
           <h2>To Do</h2>
-          <div class="task-count">3</div>
+          <div class="task-count">2</div>
         </div>
         <div class="card-header-right">
           <a href="#openModal" class="material-icons">add</a>
@@ -23,7 +23,14 @@
           draggable="true"
           @dragstart="startDrag($event, task)"
         >
-          <p>{{ task.text }}</p>
+          <div class="card-content-top">
+            <div class="card-content-text">
+              <p>{{ task.text }}</p>
+            </div>
+            <div class="card-content-edit">
+              <!-- <a href="#openModal2" class="material-icons">edit</a> -->
+            </div>
+          </div>
           <div class="task-bottom">
             <div class="task-bottom-left">
               <span class="material-icons task-icons">question_answer</span>
@@ -54,7 +61,7 @@
       <div class="card-header">
         <div class="card-header-left">
           <h2>Doing</h2>
-          <div class="task-count">3</div>
+          <div class="task-count">2</div>
         </div>
         <div class="card-header-right">
           <a href="#openModal" class="material-icons">add</a>
@@ -68,7 +75,14 @@
           draggable="true"
           @dragstart="startDrag($event, task)"
         >
-          <p>{{ task.text }}</p>
+          <div class="card-content-top">
+            <div class="card-content-text">
+              <p>{{ task.text }}</p>
+            </div>
+            <div class="card-content-edit">
+              <!-- <a href="#openModal2" class="material-icons">edit</a> -->
+            </div>
+          </div>
           <div class="task-bottom">
             <div class="task-bottom-left">
               <span class="material-icons task-icons">question_answer</span>
@@ -99,7 +113,7 @@
       <div class="card-header">
         <div class="card-header-left">
           <h2>Done</h2>
-          <div class="task-count">3</div>
+          <div class="task-count">2</div>
         </div>
         <div class="card-header-right">
           <a href="#openModal" class="material-icons">add</a>
@@ -113,7 +127,14 @@
           draggable="true"
           @dragstart="startDrag($event, task)"
         >
-          <p>{{ task.text }}</p>
+          <div class="card-content-top">
+            <div class="card-content-text">
+              <p>{{ task.text }}</p>
+            </div>
+            <div class="card-content-edit">
+              <!-- <a href="#openModal2" class="material-icons">edit</a> -->
+            </div>
+          </div>
           <div class="task-bottom">
             <div class="task-bottom-left">
               <span class="material-icons task-icons">question_answer</span>
@@ -199,8 +220,11 @@ export default {
       return this.tasks.filter((task) => task.list == list)
     },
 
+    getListCount(list) {
+      return this.tasks.filter((task) => task.list == list.lenght)
+    },
+
     startDrag(event, task) {
-      console.log(task)
       event.dataTransfer.dropEffect = 'move'
       event.dataTransfer.effectAllowed = 'move'
       event.dataTransfer.setData('taskID', task.id)
@@ -213,7 +237,6 @@ export default {
     },
     addTask(addTask) {
       this.tasks.push(addTask)
-      console.log(this.tasks)
     },
   },
 }
@@ -231,11 +254,11 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: var(--darkest);
-  width: 17%;
+  width: 18%;
   min-height: 200px;
   border-radius: 2rem;
   padding-bottom: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 22px 70px 4px;
 }
 
 .card-header {
@@ -271,6 +294,21 @@ export default {
   margin-top: 1rem;
 }
 
+.card-content-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-content-edit {
+  right: 0;
+  margin-left: auto;
+  align-items: center;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  opacity: 0;
+  transition: 0.4s;
+}
+
 .task {
   display: flex;
   flex-direction: column;
@@ -286,8 +324,13 @@ export default {
 
 .task:hover {
   transition: 0.4s;
-  box-shadow: 0px 15px 15px -5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 15px 15px -5px rgba(0, 0, 0, 0.6);
   transform: translate(0, -3px);
+}
+
+.task:hover .card-content-edit {
+  opacity: 1;
+  transition: 0.4s;
 }
 
 .task p {
